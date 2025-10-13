@@ -75,9 +75,9 @@ A comprehensive Raycast extension that allows you to search and analyze hosts us
 |-------------|----------|----------------|
 | ![Search Host](metadata/SearchShodanResults.png) | ![API Info](metadata/ApiInfo.png) | ![Search Results](metadata/SearchShodanRecent.png) |
 
-| Extension Commands | API Token Input | Statistics |
-|-------------------|-----------------|------------|
-| ![Commands](metadata/ExtensionCommands.png) | ![Token Input](metadata/ApiTokenInput.png) | ![Stats](metadata/StatsCommand.png) |
+| API Token Input | Statistics |
+|-----------------|------------|
+| ![Token Input](metadata/ApiTokenInput.png) | ![Stats](metadata/StatsCommand.png) |
 
 ## 🎯 Usage Examples
 
