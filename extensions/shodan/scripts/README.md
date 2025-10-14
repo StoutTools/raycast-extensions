@@ -23,6 +23,7 @@ npm run check-all
 7. **Security** - Basic npm audit check (if available)
 8. **File Structure** - Ensures all required files exist
 9. **Metadata** - Checks for metadata screenshots
+10. **PR Bot-style Checks** - Validates extension structure and configuration
 
 ## GitHub Actions Equivalents
 
@@ -30,6 +31,7 @@ This script mimics the following GitHub Actions workflows:
 - `extensions_build_publish.yml` - Extension build and validation
 - `changelog_enforcer.yml` - Changelog validation
 - `npm_check.yml` - NPM dependency checks
+- `pr-bot.yml` - PR Bot-style validation (AI files, platforms, structure)
 
 ## Installation
 

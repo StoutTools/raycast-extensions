@@ -144,6 +144,57 @@ else
     print_warning "Metadata directory not found"
 fi
 
+# 10. PR Bot-style checks (mimics pr-bot.yml)
+print_status "10. Running PR Bot-style checks..."
+
+# Check for AI files/tools (like PR Bot does)
+ai_files_exist=false
+if [ -f "ai.json" ] || [ -f "ai.yaml" ] || [ -f "ai.json5" ]; then
+    ai_files_exist=true
+    print_success "AI configuration files found"
+fi
+
+# Check package.json for tools field
+if grep -q '"tools"' package.json; then
+    ai_files_exist=true
+    print_success "AI tools found in package.json"
+fi
+
+if [ "$ai_files_exist" = false ]; then
+    print_success "No AI files/tools detected (standard extension)"
+fi
+
+# Check for platform specification
+if grep -q '"platforms"' package.json; then
+    platforms=$(grep -o '"platforms"[[:space:]]*:[[:space:]]*\[[^]]*\]' package.json | grep -o '\[[^]]*\]' | tr -d '[]"' | tr ',' '\n' | tr -d ' ')
+    if [ -n "$platforms" ]; then
+        print_success "Platforms specified: $platforms"
+    else
+        print_warning "Platforms field exists but is empty"
+    fi
+else
+    print_success "No platforms specified (defaults to macOS)"
+fi
+
+# Check for proper extension structure
+required_dirs=("src" "metadata")
+for dir in "${required_dirs[@]}"; do
+    if [ -d "$dir" ]; then
+        print_success "✓ $dir directory exists"
+    else
+        print_error "✗ $dir directory is missing"
+        exit 1
+    fi
+done
+
+# Check for proper command structure in package.json
+command_count=$(grep -c '"name":' package.json)
+if [ "$command_count" -gt 1 ]; then
+    print_success "Multiple commands found ($command_count total)"
+else
+    print_warning "Only one command found - consider adding more functionality"
+fi
+
 print_success "🎉 All pre-push checks passed! Ready to push."
 echo ""
 echo "Next steps:"
