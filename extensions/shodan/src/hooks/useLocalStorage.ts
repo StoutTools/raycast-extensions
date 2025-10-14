@@ -1,5 +1,5 @@
-import { LocalStorage } from '@raycast/api';
-import { useState, useEffect, useCallback } from 'react';
+import { LocalStorage } from "@raycast/api";
+import { useState, useEffect, useCallback } from "react";
 
 /**
  * Custom hook for reactive LocalStorage that automatically updates when values change
